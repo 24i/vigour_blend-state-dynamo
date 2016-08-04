@@ -1,7 +1,7 @@
 {
-  "name": "vigour-hub-dynamo",
+  "name": "blend-state-dynamo",
   "version": "0.0.1",
-  "description": "Amazon dynamodb integration for vigour-hub",
+  "description": "Amazon dynamodb integration for vigour-state",
   "engines": {
     "node": "^4.1.1"
   },
@@ -15,18 +15,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vigour-io/vigour-hub-dynamo.git"
+    "url": "git+https://github.com/vigour-io/blend-state-dynamo.git"
   },
   "keywords": [
     "javascript",
-    "hub",
+    "state",
     "db",
     "amazon"
   ],
   "author": "Jim de Beer <jim@vigour.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vigour-io/vigour-hub-dynamo/issues"
+    "url": "https://github.com/vigour-io/blend-state-dynamo/issues"
   },
   "dependencies": {
     "aws-sdk": "^2.4.10",
@@ -57,5 +57,5 @@
     "standard": "^7.0.1",
     "pre-commit": "^1.1.3"
   },
-  "homepage": "https://github.com/vigour-io/vigour-hub-dynamo#readme"
+  "homepage": "https://github.com/vigour-io/blend-state-dynamo#readme"
 }
