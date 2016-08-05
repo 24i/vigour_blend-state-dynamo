@@ -2,10 +2,9 @@
 const State = require('vigour-state')
 const test = require('tape')
 const testTable = 'blend-state-dyanamo-test'
+const state = new State({ inject: require('../') })
 
 test('initialize, create table', (t) => {
-  const state = new State({ inject: require('../') })
-
   state.set({
     db: {
       id: process.env.AMAZON_ID,
@@ -19,11 +18,23 @@ test('initialize, create table', (t) => {
     }
   })
 
-  // also needs a queue
   state.db.hasTable.is(true).then(() => {
-    console.log('yo')
-    state.db.table.remove()
+    t.ok(true, 'hasTable')
+    t.end()
   })
-
-  // t.end()
+  // also needs a queue
 })
+
+
+test('set a field, ', (t) => {
+  // state.db.
+  // set a field before being connected
+})
+
+/*
+  state.db.table.remove()
+    state.db.hasTable.is(false, () => {
+      console.log('REMOVED')
+      t.end()
+    })
+*/
