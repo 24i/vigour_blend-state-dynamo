@@ -8,11 +8,18 @@ test('set data', (t) => {
     db: {
       id: process.env.AMAZON_ID,
       secret: process.env.AMAZON_SECRET,
-      // need to add a remove api as well!
-      table: 'test-table'
+      table: 'test-table-' + Date.now()
+    },
+    on: {
+      error (err) {
+        console.log(err)
+      }
     }
   })
-  console.log('____X____')
-  console.log('yo yo yo')
+
+  state.db.hasTable.is(true).then(() => {
+    console.log('yo')
+    state.db.table.remove()
+  })
   t.end()
 })
