@@ -9,7 +9,21 @@ test('initialize, create table', (t) => {
     db: {
       id: process.env.AMAZON_ID,
       secret: process.env.AMAZON_SECRET,
-      table: testTable
+      table: testTable,
+      in (val) {
+        console.log(val)
+      },
+      out (state) {
+        const path = state.path()
+        const context = path[0]
+        path.shift()
+        return {
+          key: path,
+          context: context,
+          val: state.val,
+          stamp: state.stamp
+        }
+      }
     },
     on: {
       error (err) {
@@ -17,18 +31,21 @@ test('initialize, create table', (t) => {
       }
     }
   })
-
   state.db.hasTable.is(true).then(() => {
     t.ok(true, 'hasTable')
     t.end()
   })
-  // also needs a queue
 })
 
-
-test('set a field, ', (t) => {
-  // state.db.
-  // set a field before being connected
+test('set a field', (t) => {
+  state.set({
+    token: {
+      field: 'hello',
+      other: '$root.token.bla'
+    }
+  })
+  // set a field before being ready
+  t.end()
 })
 
 /*
