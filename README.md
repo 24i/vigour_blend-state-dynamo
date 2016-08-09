@@ -7,22 +7,22 @@ dynamo - db integration for vigour-hub
 [![Coverage Status](https://coveralls.io/repos/github/vigour-io/blend-state-dynamo/badge.svg?branch=master)](https://coveralls.io/github/vigour-io/blend-state-dynamo?branch=master)
 
 ```javascript
-test('initialize, create table', (t) => {
-  state.set({
-    db: {
-      id: AMAZON_ID,
-      secret: AMAZON_SECRET,
-      table: testTable
-    },
-    on: {
-      error (err) {
-        console.log(err)
-      }
+state.inject(require('blend-state-dynamo'))
+
+state.set({
+  db: {
+    id: AMAZON_ID,
+    secret: AMAZON_SECRET,
+    table: testTable
+  },
+  on: {
+    error (err) {
+      console.log(err)
     }
-  })
-  state.db.hasTable.is(true).then(() => {
-    t.ok(true, 'hasTable')
-    t.end()
-  })
+  }
+})
+state.db.hasTable.is(true).then(() => {
+  t.ok(true, 'hasTable')
+  t.end()
 })
 ```
