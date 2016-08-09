@@ -32,7 +32,6 @@ test('initialize, create table', (t) => {
       }
     }
   })
-  console.log('X???')
   state.db.hasTable.is(true).then(() => {
     t.ok(true, 'hasTable')
     t.end()
