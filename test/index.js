@@ -41,9 +41,15 @@ test('initialize, create table', (t) => {
 test('set a field', (t) => {
   state.set({
     token: {
-      field: 'hello',
+      field: 'bye',
       other: '$root.token.bla',
       deeper: { hello: true }
+    }
+  })
+
+  state.set({
+    token: {
+      field: 'hello'
     }
   })
   state.on('error', () => t.fail('throws error'))
