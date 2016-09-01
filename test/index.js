@@ -6,6 +6,9 @@ const state = new State({ inject: require('../') })
 const AMAZON_ID = process.env.AMAZON_ID
 const AMAZON_SECRET = process.env.AMAZON_SECRET
 
+// no mapping just straight
+// lets make that keystore server for this
+
 function out (state) {
   const path = state.path()
   const context = path[0]
@@ -19,6 +22,7 @@ function out (state) {
 }
 
 test('initialize, create table', (t) => {
+  t.plan(1)
   state.set({
     db: {
       id: AMAZON_ID,
@@ -32,9 +36,9 @@ test('initialize, create table', (t) => {
       }
     }
   })
+
   state.db.hasTable.is(true).then(() => {
     t.ok(true, 'hasTable')
-    t.end()
   })
 })
 
@@ -52,7 +56,6 @@ test('set a field', (t) => {
       field: 'hello'
     }
   })
-  state.on('error', () => t.fail('throws error'))
   t.ok(true, 'does not throw error')
   t.end()
 })
