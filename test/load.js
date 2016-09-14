@@ -36,7 +36,7 @@ test('load a whole table', (t) => {
   })
 })
 
-test('load context', (t) => {
+test('load specific context', (t) => {
   const state = new State({ inject: require('../') })
   // loads whole table
   state.set({
@@ -62,6 +62,32 @@ test('load context', (t) => {
   })
   state.db.load('token', () => {
     t.same(state.token.deeper.hello.val, true, 'returns correct data')
+    t.end()
+  })
+})
+
+test('load specific context - default parser', (t) => {
+  const state = new State({ inject: require('../') })
+  // loads whole table
+  state.set({
+    db: {
+      id: AMAZON_ID,
+      secret: AMAZON_SECRET,
+      table: testTable
+    },
+    on: {
+      error (err) {
+        console.log(err)
+      }
+    }
+  })
+
+  state.set({
+    field: true
+  })
+
+  state.db.load('token', () => {
+    t.same(state.deeper.hello.val, true, 'returns correct data')
     t.end()
   })
 })
