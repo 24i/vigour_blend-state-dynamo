@@ -1,6 +1,6 @@
 {
   "name": "blend-state-dynamo",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Amazon dynamodb integration for vigour-state",
   "engines": {
     "node": "^4.1.1"
