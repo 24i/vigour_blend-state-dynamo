@@ -5,7 +5,6 @@ const testTable = 'blend-state-dyanamo-test'
 const state = new State({ inject: require('../') })
 const AMAZON_ID = process.env.AMAZON_ID
 const AMAZON_SECRET = process.env.AMAZON_SECRET
-const out = require('./util').out
 // no mapping just straight
 // lets make that keystore server for this
 
@@ -15,8 +14,7 @@ test('initialize, create table', (t) => {
     db: {
       id: AMAZON_ID,
       secret: AMAZON_SECRET,
-      table: testTable,
-      out
+      table: testTable
     },
     on: {
       error (err) {
@@ -46,8 +44,10 @@ test('set a field', (t) => {
     }
   })
 
-  t.ok(true, 'does not throw error')
-  t.end()
+  setTimeout(() => {
+    t.ok(true, 'does not throw error')
+    t.end()
+  }, 1e3)
 })
 
 test('set a field (default out)', (t) => {
@@ -66,6 +66,8 @@ test('set a field (default out)', (t) => {
     }
   })
 
-  t.ok(true, 'does not throw error')
-  t.end()
+  setTimeout(() => {
+    t.ok(true, 'does not throw error')
+    t.end()
+  }, 1e3)
 })

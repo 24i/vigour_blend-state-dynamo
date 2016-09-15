@@ -4,7 +4,6 @@ const test = require('tape')
 const testTable = 'blend-state-dyanamo-test'
 const AMAZON_ID = process.env.AMAZON_ID
 const AMAZON_SECRET = process.env.AMAZON_SECRET
-const out = require('./util').out
 
 test('load a whole table', (t) => {
   const state = new State({ inject: require('../') })
@@ -14,7 +13,6 @@ test('load a whole table', (t) => {
       id: AMAZON_ID,
       secret: AMAZON_SECRET,
       table: testTable,
-      out,
       define: {
         extend: {
           in (parse, val) {
@@ -38,8 +36,8 @@ test('load a whole table', (t) => {
           'hello': true
         },
         'bla': {},
-        'other': '$root.token.bla',
-        'field': 'hello'
+        field: 'hello',
+        'other': '$root.token.bla'
       }
     }, 'correct state')
     t.end()
@@ -54,7 +52,6 @@ test('load specific context', (t) => {
       id: AMAZON_ID,
       secret: AMAZON_SECRET,
       table: testTable,
-      out,
       define: {
         extend: {
           in (parse, val) {
@@ -75,9 +72,9 @@ test('load specific context', (t) => {
         'deeper': {
           'hello': true
         },
+        field: 'hello',
         'bla': {},
-        'other': '$root.token.bla',
-        'field': 'hello'
+        'other': '$root.token.bla'
       }
     }, 'correct state')
     t.end()
@@ -106,9 +103,34 @@ test('load specific context - default parser', (t) => {
         },
         'bla': {},
         'other': '$root.token.bla',
-        'field': 'hello'
+        field: 'hello'
       }
     }, 'correct state')
     t.end()
+  })
+})
+
+test('remove fields', (t) => {
+  const state = new State({ inject: require('../') })
+  state.set({
+    db: {
+      id: AMAZON_ID,
+      secret: AMAZON_SECRET,
+      table: testTable
+    },
+    on: {
+      error (err) {
+        console.log(err)
+      }
+    }
+  })
+  state.db.load('token', () => {
+    state.token.deeper.remove()
+    setTimeout(() => {
+      state.db.load('token', () => {
+        t.equal(state.token.deeper, null, 'field is removed')
+        t.end()
+      })
+    }, 1e3)
   })
 })
