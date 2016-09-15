@@ -32,14 +32,14 @@ test('load a whole table', (t) => {
   state.db.load('*', () => {
     t.same(state.token.deeper.hello.val, true, 'returns correct data')
     t.same(state.serialize(), {
-      "field": true,
-      "token": {
-        "deeper": {
-          "hello": true
+      'field': true,
+      'token': {
+        'deeper': {
+          'hello': true
         },
-        "bla": {},
-        "other": "$root.token.bla",
-        "field": "hello"
+        'bla': {},
+        'other': '$root.token.bla',
+        'field': 'hello'
       }
     }, 'correct state')
     t.end()
@@ -71,13 +71,13 @@ test('load specific context', (t) => {
   })
   state.db.load('token', () => {
     t.same(state.serialize(), {
-      "token": {
-        "deeper": {
-          "hello": true
+      'token': {
+        'deeper': {
+          'hello': true
         },
-        "bla": {},
-        "other": "$root.token.bla",
-        "field": "hello"
+        'bla': {},
+        'other': '$root.token.bla',
+        'field': 'hello'
       }
     }, 'correct state')
     t.end()
@@ -100,13 +100,13 @@ test('load specific context - default parser', (t) => {
   })
   state.db.load('token', () => {
     t.same(state.serialize(), {
-      "token": {
-        "deeper": {
-          "hello": true
+      'token': {
+        'deeper': {
+          'hello': true
         },
-        "bla": {},
-        "other": "$root.token.bla",
-        "field": "hello"
+        'bla': {},
+        'other': '$root.token.bla',
+        'field': 'hello'
       }
     }, 'correct state')
     t.end()
