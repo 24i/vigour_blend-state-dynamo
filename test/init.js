@@ -50,3 +50,22 @@ test('set a field', (t) => {
   t.end()
 })
 
+test('set a field (default out)', (t) => {
+  state.set({
+    token: {
+      field: 'bye',
+      other: '$root.token.bla',
+      deeper: { hello: true }
+    },
+    field: true
+  })
+
+  state.set({
+    token: {
+      field: 'hello'
+    }
+  })
+
+  t.ok(true, 'does not throw error')
+  t.end()
+})
