@@ -36,7 +36,8 @@ test('set a field', (t) => {
       field: 'bye',
       other: '$root.token.bla',
       deeper: { hello: true }
-    }
+    },
+    field: true
   })
 
   state.set({
@@ -44,6 +45,7 @@ test('set a field', (t) => {
       field: 'hello'
     }
   })
+
   t.ok(true, 'does not throw error')
   t.end()
 })
