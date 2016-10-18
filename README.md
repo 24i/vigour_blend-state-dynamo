@@ -1,5 +1,5 @@
 # blend-state-dynamo
-dynamo - db integration for vigour-hub
+dynamo - db integration for brisky-hub
 
 [![Build Status](https://travis-ci.org/vigour-io/boilerplate-module.svg?branch=master)](https://travis-ci.org/vigour-io/blend-state-dynamo)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
