@@ -24,8 +24,7 @@ test('timeline - connect to table', { timeout }, t => {
       }
     }
   })
-
-  state.db.hasTable.is(true).then(() => t.end('connected'))
+  state.db.hasTable.is(true).then(() => t.end())
 })
 
 test('timeline - set some values', { timeout }, t => {
