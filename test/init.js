@@ -1,7 +1,7 @@
 'use strict'
 const State = require('vigour-state')
 const test = require('tape')
-const testTable = 'blend-state-dyanamo-test'
+const testTable = 'blend-state-dynamo-test'
 const state = new State({ inject: require('../') })
 const AMAZON_ID = process.env.AMAZON_ID
 const AMAZON_SECRET = process.env.AMAZON_SECRET
@@ -62,7 +62,7 @@ test('set a field (default out)', (t) => {
 
   state.set({
     token: {
-      field: 'hello'
+      field: 'hello2'
     }
   })
 

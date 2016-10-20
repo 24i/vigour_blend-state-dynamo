@@ -1,7 +1,7 @@
 'use strict'
 const State = require('vigour-state')
 const test = require('tape')
-const testTable = 'blend-state-dyanamo-test'
+const testTable = 'blend-state-dynamo-test'
 const AMAZON_ID = process.env.AMAZON_ID
 const AMAZON_SECRET = process.env.AMAZON_SECRET
 
@@ -36,7 +36,7 @@ test('load a whole table', (t) => {
           'hello': true
         },
         'bla': {},
-        field: 'hello',
+        field: 'hello2',
         'other': '$root.token.bla'
       }
     }, 'correct state')
@@ -72,7 +72,7 @@ test('load specific context', (t) => {
         'deeper': {
           'hello': true
         },
-        field: 'hello',
+        field: 'hello2',
         'bla': {},
         'other': '$root.token.bla'
       }
@@ -103,7 +103,7 @@ test('load specific context - default parser', (t) => {
         },
         'bla': {},
         'other': '$root.token.bla',
-        field: 'hello'
+        field: 'hello2'
       }
     }, 'correct state')
     t.end()
