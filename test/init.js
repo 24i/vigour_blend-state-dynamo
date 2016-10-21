@@ -19,6 +19,7 @@ test('initialize, create table', (t) => {
     on: {
       error (err) {
         console.log(err)
+        t.fail(err)
       }
     }
   })

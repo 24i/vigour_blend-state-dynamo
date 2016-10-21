@@ -5,10 +5,13 @@ const test = require('tape')
 const testTable = 'blend-state-dynamo-test-tl'
 const AMAZON_ID = process.env.AMAZON_ID
 const AMAZON_SECRET = process.env.AMAZON_SECRET
-const timeout = 10e3
-
+const timeout = 60e3
+require('repl').start({
+  prompt: '> ',
+  useGlobal: true
+})
 const shortPause = () => new Promise(resolve => {
-  setTimeout(resolve, 100)
+  setTimeout(resolve, 550)
 })
 
 test('timeline - write - sets creating records', { timeout }, t => {
@@ -21,12 +24,6 @@ test('timeline - write - sets creating records', { timeout }, t => {
       secret: AMAZON_SECRET,
       timeline: true,
       table: testTable
-    },
-    on: {
-      error (err) {
-        // console.log(err)
-        t.fail(err)
-      }
     }
   })
   state.db.hasTable.is(true)
@@ -59,8 +56,9 @@ test('timeline - write - sets creating records', { timeout }, t => {
     },
     unshine: null
   }))
+  .then(() => state.db.writing)
   .then(() => new Promise((resolve, reject) => {
-    t.pass('did some intermittent sets')
+    t.pass('wrote some intermittent sets to db')
     state.db.db.scan({
       TableName: `${testTable}-timeline`
     }, (err, data) => {
@@ -76,5 +74,7 @@ test('timeline - write - sets creating records', { timeout }, t => {
     t.pass('got data its all good')
     t.end()
   })
-  .catch(err => t.end(err))
+  .catch(err => {
+    t.end(err)
+  })
 })
