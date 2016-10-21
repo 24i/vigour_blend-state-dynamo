@@ -33,9 +33,11 @@ state.db.hasTable.is(true).then(() => {
 #### Loading data
 
 ```javascript
-state.db.load() // loads all data without context
-state.db.load('somecontextid') // loads all data with somecontextid
-state.db.load('*') //loads all data of all contexts -- warn maybe very heavy
+/* load data from context false */
+state.db.load()
+
+/* load data from context context-A */
+state.db.load('context-A')
 ```
 
 ### Snapshot and Timeline

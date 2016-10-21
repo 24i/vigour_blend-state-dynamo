@@ -1,15 +1,18 @@
 'use strict'
 
+// require('repl').start({
+//   prompt: '> ',
+//   useGlobal: true
+// })
+
 const State = require('vigour-state')
 const test = require('tape')
+const expected = require('./timeline-expected.json')
 const testTable = 'blend-state-dynamo-test-tl'
 const AMAZON_ID = process.env.AMAZON_ID
 const AMAZON_SECRET = process.env.AMAZON_SECRET
 const timeout = 60e3
-require('repl').start({
-  prompt: '> ',
-  useGlobal: true
-})
+
 const shortPause = () => new Promise(resolve => {
   setTimeout(resolve, 550)
 })
@@ -61,20 +64,15 @@ test('timeline - write - sets creating records', { timeout }, t => {
     t.pass('wrote some intermittent sets to db')
     state.db.db.scan({
       TableName: `${testTable}-timeline`
-    }, (err, data) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(data)
-      }
-    })
+    }, (err, data) => err ? reject(err) : resolve(data))
   }))
   .then(data => {
-    console.log('ok got some timeline data from that table wadap', data)
-    t.pass('got data its all good')
+    global.data = data
+    t.same(data, expected, 'timeline data looks good')
     t.end()
   })
   .catch(err => {
+    console.log(JSON.stringify(global.data, false, 2))
     t.end(err)
   })
 })

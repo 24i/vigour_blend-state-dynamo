@@ -27,7 +27,8 @@ test('load a whole table', (t) => {
       }
     }
   })
-  state.db.load('*', () => {
+  state.db.load('false')
+  .then(() => {
     t.same(state.token.deeper.hello.val, true, 'returns correct data')
     t.same(state.serialize(), {
       'field': true,
@@ -36,17 +37,17 @@ test('load a whole table', (t) => {
           'hello': true
         },
         'bla': {},
-        field: 'hello2',
+        field: 'hello',
         'other': '$root.token.bla'
       }
     }, 'correct state')
     t.end()
   })
+  .catch(err => t.end(err))
 })
 
 test('load specific context', (t) => {
   const state = new State({ inject: require('../') })
-  // loads whole table
   state.set({
     db: {
       id: AMAZON_ID,
@@ -66,22 +67,22 @@ test('load specific context', (t) => {
       }
     }
   })
-  state.db.load('token', () => {
+
+  state.db.load('context-X')
+  .then(() => {
     t.same(state.serialize(), {
-      'token': {
-        'deeper': {
-          'hello': true
-        },
-        field: 'hello2',
-        'bla': {},
-        'other': '$root.token.bla'
-      }
+      token: {
+        field: 'X val 1 -> 4',
+        deeper: { hello: 'X val 2' }
+      },
+      field: 'X val 3'
     }, 'correct state')
     t.end()
   })
+  .catch(err => t.end(err))
 })
 
-test('load specific context - default parser', (t) => {
+test('remove field', (t) => {
   const state = new State({ inject: require('../') })
   state.set({
     db: {
@@ -95,42 +96,16 @@ test('load specific context - default parser', (t) => {
       }
     }
   })
-  state.db.load('token', () => {
-    t.same(state.serialize(), {
-      'token': {
-        'deeper': {
-          'hello': true
-        },
-        'bla': {},
-        'other': '$root.token.bla',
-        field: 'hello2'
-      }
-    }, 'correct state')
-    t.end()
-  })
-})
-
-test('remove fields', (t) => {
-  const state = new State({ inject: require('../') })
-  state.set({
-    db: {
-      id: AMAZON_ID,
-      secret: AMAZON_SECRET,
-      table: testTable
-    },
-    on: {
-      error (err) {
-        console.log(err)
-      }
-    }
-  })
-  state.db.load('token', () => {
+  state.db.load('false')
+  .then(() => {
     state.token.deeper.remove()
-    setTimeout(() => {
-      state.db.load('token', () => {
+    state.db.writing.then(() => {
+      state.db.load('token')
+      .then(() => {
         t.equal(state.token.deeper, null, 'field is removed')
         t.end()
       })
-    }, 1e3)
+    })
   })
+  .catch(err => t.end(err))
 })
