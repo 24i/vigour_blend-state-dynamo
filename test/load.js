@@ -5,6 +5,8 @@ const testTable = 'blend-state-dynamo-test'
 const AMAZON_ID = process.env.AMAZON_ID
 const AMAZON_SECRET = process.env.AMAZON_SECRET
 
+require('repl').start({prompt: '> ', useGlobal: true})
+
 test('load a whole table', (t) => {
   const state = new State({ inject: require('../') })
   // loads whole table
@@ -99,13 +101,23 @@ test('remove field', (t) => {
   state.db.load('false')
   .then(() => {
     state.token.deeper.remove()
-    state.db.writing.then(() => {
-      state.db.load('token')
-      .then(() => {
-        t.equal(state.token.deeper, null, 'field is removed')
-        t.end()
-      })
-    })
+    return state.db.writing
+  })
+  .then(() => state.db.load('false'))
+  .then(() => {
+    t.equal(state.token.deeper, null, 'field is removed')
+  })
+  .catch(err => t.fail(err))
+  .then(() => {
+    console.log('remove state')
+    global.state = state
+    global.db = state.db
+    state.remove()
+    t.end()
   })
   .catch(err => t.end(err))
 })
+
+// function removeTable (db) {
+//
+// }
