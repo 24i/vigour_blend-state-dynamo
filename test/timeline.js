@@ -62,7 +62,7 @@ test('timeline - write - sets creating records', { timeout }, t => {
   .then(() => state.db.writing)
   .then(() => new Promise((resolve, reject) => {
     t.pass('wrote some intermittent sets to db')
-    state.db.db.scan({
+    state.db.aws.scan({
       TableName: `${testTable}-timeline`
     }, (err, data) => err ? reject(err) : resolve(data))
   }))
