@@ -1,0 +1,166 @@
+{
+  "Items": [
+    {
+      "time": {
+        "N": "6"
+      },
+      "path": {
+        "S": "unshine"
+      },
+      "context": {
+        "S": "false"
+      },
+      "key": {
+        "S": "false.unshine"
+      },
+      "val": {
+        "BOOL": false
+      },
+      "stamp": {
+        "N": "6"
+      }
+    },
+    {
+      "time": {
+        "N": "7"
+      },
+      "path": {
+        "S": "unshine"
+      },
+      "context": {
+        "S": "false"
+      },
+      "key": {
+        "S": "false.unshine"
+      },
+      "val": {
+        "S": "null"
+      },
+      "stamp": {
+        "N": "7"
+      }
+    },
+    {
+      "time": {
+        "N": "5"
+      },
+      "path": {
+        "S": "shine.nest"
+      },
+      "context": {
+        "S": "false"
+      },
+      "key": {
+        "S": "false.shine.nest"
+      },
+      "val": {
+        "BOOL": true
+      },
+      "stamp": {
+        "N": "5"
+      }
+    },
+    {
+      "time": {
+        "N": "7"
+      },
+      "path": {
+        "S": "shine.nest"
+      },
+      "context": {
+        "S": "false"
+      },
+      "key": {
+        "S": "false.shine.nest"
+      },
+      "val": {
+        "BOOL": false
+      },
+      "stamp": {
+        "N": "7"
+      }
+    },
+    {
+      "time": {
+        "N": "7"
+      },
+      "path": {
+        "S": "shine.deep.otherprop"
+      },
+      "context": {
+        "S": "false"
+      },
+      "key": {
+        "S": "false.shine.deep.otherprop"
+      },
+      "val": {
+        "S": "slark"
+      },
+      "stamp": {
+        "N": "7"
+      }
+    },
+    {
+      "time": {
+        "N": "5"
+      },
+      "path": {
+        "S": "shine.deep.prop"
+      },
+      "context": {
+        "S": "false"
+      },
+      "key": {
+        "S": "false.shine.deep.prop"
+      },
+      "val": {
+        "N": "5"
+      },
+      "stamp": {
+        "N": "5"
+      }
+    },
+    {
+      "time": {
+        "N": "6"
+      },
+      "path": {
+        "S": "shine.deep.prop"
+      },
+      "context": {
+        "S": "false"
+      },
+      "key": {
+        "S": "false.shine.deep.prop"
+      },
+      "val": {
+        "N": "2"
+      },
+      "stamp": {
+        "N": "6"
+      }
+    },
+    {
+      "time": {
+        "N": "7"
+      },
+      "path": {
+        "S": "shine.deep.prop"
+      },
+      "context": {
+        "S": "false"
+      },
+      "key": {
+        "S": "false.shine.deep.prop"
+      },
+      "val": {
+        "N": "5"
+      },
+      "stamp": {
+        "N": "7"
+      }
+    }
+  ],
+  "Count": 8,
+  "ScannedCount": 8
+}

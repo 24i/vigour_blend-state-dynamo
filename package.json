@@ -1,6 +1,6 @@
 {
   "name": "blend-state-dynamo",
-  "version": "2.0.2",
+  "version": "3.1.3",
   "description": "Amazon dynamodb integration for vigour-state",
   "engines": {
     "node": "^4.1.1"
@@ -33,7 +33,6 @@
     "vigour-stamp": "^1.3.6",
     "aws-sdk": "^2.4.10",
     "babelify": "^7.3.0",
-    "lodash.set": "^4.0.0",
     "babel-preset-es2015": "^6.6.0"
   },
   "browserify": {
